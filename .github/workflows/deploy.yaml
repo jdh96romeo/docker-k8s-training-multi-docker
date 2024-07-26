@@ -19,7 +19,7 @@ jobs:
       - run: docker build -t jdh96romeo/react-test -f ./client/Dockerfile.dev ./client
       
       - name: Run tests
-      - run: docker run -e CI=true jdh96romeo/react-test npm test
+      - run: docker run -e CI=true jdh96romeo/react-test npm run test
 
       - name: Build Docker PROD image / multi-client
       - run: docker build -t jdh96romeo/multi-client ./client
