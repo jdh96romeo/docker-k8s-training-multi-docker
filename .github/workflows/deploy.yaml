@@ -10,37 +10,37 @@ jobs:
     steps:
 
       - name: Checkout source code
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Log in to Docker Hub
-      - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       
       - name: Build Docker TEST image
-      - run: docker build -t jdh96romeo/react-test -f ./client/Dockerfile.dev ./client
+        run: docker build -t jdh96romeo/react-test -f ./client/Dockerfile.dev ./client
       
       - name: Run tests
-      - run: docker run -e CI=true jdh96romeo/react-test npm run test
+        run: docker run -e CI=true jdh96romeo/react-test npm run test
 
       - name: Build Docker PROD image / multi-client
-      - run: docker build -t jdh96romeo/multi-client ./client
+        run: docker build -t jdh96romeo/multi-client ./client
       
       - name: Build Docker PROD image / multi-nginx
-      - run: docker build -t jdh96romeo/multi-nginx ./nginx
+        run: docker build -t jdh96romeo/multi-nginx ./nginx
       
       - name: Build Docker PROD image / multi-server
-      - run: docker build -t jdh96romeo/multi-server ./server
+        run: docker build -t jdh96romeo/multi-server ./server
       
       - name: Build Docker PROD image / multi-worker
-      - run: docker build -t jdh96romeo/multi-worker ./worker
+        run: docker build -t jdh96romeo/multi-worker ./worker
 
       - name: Push Docker PROD images to Docker Hub / multi-client
-      - run: docker push jdh96romeo/multi-client
+        run: docker push jdh96romeo/multi-client
       
       - name: Push Docker PROD images to Docker Hub / multi-nginx
-      - run: docker push jdh96romeo/multi-nginx
+        run: docker push jdh96romeo/multi-nginx
       
       - name: Push Docker PROD images to Docker Hub / multi-server
-      - run: docker push jdh96romeo/multi-server
+        run: docker push jdh96romeo/multi-server
       
       - name: Push Docker PROD images to Docker Hub / multi-worker
-      - run: docker push jdh96romeo/multi-worker
+        run: docker push jdh96romeo/multi-worker
