@@ -21,14 +21,26 @@ jobs:
       - name: Run tests
       - run: docker run -e CI=true jdh96romeo/react-test npm test
 
-      - name: Build Docker PROD images
+      - name: Build Docker PROD image / multi-client
       - run: docker build -t jdh96romeo/multi-client ./client
+      
+      - name: Build Docker PROD image / multi-nginx
       - run: docker build -t jdh96romeo/multi-nginx ./nginx
+      
+      - name: Build Docker PROD image / multi-server
       - run: docker build -t jdh96romeo/multi-server ./server
+      
+      - name: Build Docker PROD image / multi-worker
       - run: docker build -t jdh96romeo/multi-worker ./worker
 
-      - name: Push Docker PROD images to Docker Hub
+      - name: Push Docker PROD images to Docker Hub / multi-client
       - run: docker push jdh96romeo/multi-client
+      
+      - name: Push Docker PROD images to Docker Hub / multi-nginx
       - run: docker push jdh96romeo/multi-nginx
+      
+      - name: Push Docker PROD images to Docker Hub / multi-server
       - run: docker push jdh96romeo/multi-server
+      
+      - name: Push Docker PROD images to Docker Hub / multi-worker
       - run: docker push jdh96romeo/multi-worker
