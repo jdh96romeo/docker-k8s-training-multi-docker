@@ -1,0 +1,34 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "jdh96romeo/multi-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "jdh96romeo/multi-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "jdh96romeo/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "jdh96romeo/multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": {
+                "hostPort": 80,
+                "containerPort": 80
+            },    
+            "links": ["client", "server"]
+        }
+    ]
+}
